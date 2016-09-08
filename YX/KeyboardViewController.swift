@@ -56,9 +56,13 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let buttonTitles = ["😀", "👎", "😒", "🙄", "😢", "👏","😂","😞","💋","🌹"]
+        let buttonTitles = ["😀","👎","😒","🙄","😢","👏","😂",
+                            "😞","💋","🌹","😷","🍔","👼","🐅",
+                            "🌍","🍅","🎀","👄","🐷","😊","🙉",
+                            "🐹","🐸","🙏","🍎","❤️","☺️","😤"]
+        
         let buttons = createButtons(buttonTitles)
-        let topRow = UIView(frame: CGRectMake(0, 0, SCREENWIDTH, 40))
+        let topRow = UIView(frame: CGRectMake(0, 0, SCREENWIDTH, 180))
         
         let deleteBtn = UIButton(frame: CGRect(x: SCREENWIDTH - 50, y: 180,width: 30,height: 30))
         deleteBtn.addTarget(self, action: #selector(keyboardDelete), forControlEvents: UIControlEvents.TouchUpInside)
@@ -69,12 +73,24 @@ class KeyboardViewController: UIInputViewController {
         topRow.backgroundColor = UIColor.redColor()
         self.view.addSubview(topRow)
         
-        let btnW = SCREENWIDTH / CGFloat( buttons.count)
+        let btnW = SCREENWIDTH / 7
         
         for ( idx, button) in buttons.enumerate() {
             
-            button.frame = CGRect(x: btnW * CGFloat( idx ), y: 0, width: btnW, height: 40)
+            let row = idx % 7
+            let loc = idx / 7
+            
+            button.frame = CGRect(x: btnW * CGFloat( row ), y: 40 * CGFloat( loc ), width: btnW, height: 40)
             topRow.addSubview(button)
+        }
+        
+        for ( idx, view) in self.view.subviews.enumerate() {
+            
+            
+            
+            
+            
+            print(view)
         }
         
         
